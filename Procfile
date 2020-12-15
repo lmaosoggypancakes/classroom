@@ -1,2 +1,2 @@
 release: python3 manage.py migrate
-web: uvicorn capstone.asgi:application
+web: uvicorn --host https://classroom50.herokuapp.com/ capstone.asgi:application
