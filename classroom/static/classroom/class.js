@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     show_view("chat-div")
     const msg = document.querySelector('#msg');
     const socket = new WebSocket(
-        'wss://'
+        'ws://'
         + window.location.host
-        + '/wss/chat/'
+        + '/ws/chat/'
         + window.location.pathname[7]
         + '/'
     );
