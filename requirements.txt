@@ -6,4 +6,4 @@ django-heroku
 Pillow
 Twisted
 whitenoise
-
+uvicorn
