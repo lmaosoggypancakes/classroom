@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const socket = new WebSocket(
         'wss://'
         + window.location.host
-        + '/ws/chat/'
+        + '/wss/chat/'
         + window.location.pathname[7]
         + '/'
     );
