@@ -1,4 +1,3 @@
-asgi_redis
 channels-redis
 daphne
 Django
