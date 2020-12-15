@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <script></script>
+    <style> 
+    h1 {
+        color: white;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: linear-gradient(to right, purple, orange);
+        position: relative;
+        width: auto;
+        font-family: 'Roboto', serif;
+    }
+    #pw {
+        border: none;
+        border-bottom: 3px dashed black;
+        width: 25vw;
+        background: transparent;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+    }
+    .holder {
+        margin-top: 50vh;
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <div class="holder">
+    <form method="post">
+        <h1>New Password:</h1>
+        {% csrf_token %}
+        <input type="text" name="password" id="pw" autocomplete="off">
+    </form>
+</div>
+</body>
+</html>

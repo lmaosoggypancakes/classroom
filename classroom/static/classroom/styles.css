@@ -1,0 +1,284 @@
+html, body {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+body {
+    /* background-image: linear-gradient(to right, purple, orange); */
+}
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+#name {
+    height: 100%;
+    margin-top: 20%;
+    min-width: 50vw;
+}
+#h2 {
+    text-align: center;
+}
+
+/* 
+
+INITIAL DIVS SET TO DISPLAY OF NONE, JAVASCRIPT TO HANDLE WHAT DIV TO DISPLAY 
+
+*/
+
+
+
+.student-list {
+    display: none;
+}
+.assignments {
+    display: none;
+}
+.chat {
+    display: none;
+}
+
+#hw-form {
+    width: 100%;
+}
+
+/* 
+
+END CLASS DIVS
+
+*/
+#waffle {
+    display: none;
+}
+svg {
+    margin-right: 0.3em;
+}
+
+#profile {
+    float: right;
+}
+
+header {
+    padding-top: 10px;
+}
+
+#student1 {
+    float: right;
+}
+
+#student2 {
+    float: left;
+}
+#already {
+    text-align: center;
+}
+
+#student_new {
+    float: right;
+}
+.mobile-links {
+    text-align: center;
+}
+@keyframes form {
+    0% {
+        border-radius: 0;
+    }
+    50% {
+        border-radius: 50px;
+    }
+    100% {
+        border-radius: 10;
+    }
+}
+
+
+.form{
+    border: 20px solid black;
+    animation-name: form;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+
+#code {
+    width: 30vw;
+    height: 10vh;
+    font-size: 30px;
+}
+
+.body {
+    margin: auto;
+    margin-top: 20vh;
+}
+
+#type {
+    text-align: center;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 50;
+    }
+    100% {
+        opacity: 100;
+        display: block;
+    }
+
+}
+
+#create-1 {
+    opacity: 0;
+    animation-name: show;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+
+#create-2 {
+    margin-top: 10vh;
+    margin: auto;
+    opacity: 0;
+    animation-name: show;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+#name {
+    width: 100%;
+    height: 200%;
+}
+
+#create-3 {
+    opacity: 0;
+    animation-name: show;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+
+nav.class-nav div.row button {
+    margin-top: 1em;
+    padding: 0.25em;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    width: 15%;
+}
+#main {
+    height: 70%;
+}
+.chat {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: scroll;
+}
+#messages {
+    width: 100%;
+}
+#msg-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#msg {
+    width: 100%;
+}
+
+#create-1 {
+    margin-top: 25vh;
+}
+#new-hw {
+    margin-top: 2%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5em;
+    margin-bottom: 2%;
+}
+.calendar {
+    width: 100%;
+}
+
+.output {
+    display: block;
+}
+.question-form-holder {
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+}
+#question {
+    display: flex;
+    min-width: 100%;
+}
+.assignment {
+    border:  2px solid purple;
+    width: 50%;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#hw-form {
+    display: none;
+}
+.assignment:hover {
+    box-shadow: 2px 2px 2px 0px;
+}
+@media only screen and (max-width: 768px) {
+    #h2 {
+        text-align: center;
+    }
+    .assignment {
+        width: 100%;
+    }
+    #newstudent, #newteacher {
+        float: none;
+        text-align: center;
+        margin-bottom: 20px;
+
+    }
+    #already {
+        text-align: center;
+    }
+    #student_new {
+        float: none;
+    }
+    #waffle {
+        display: block;
+    }
+    .text-dark.h3 {
+        display: none;
+    }
+    .col.text-center .btn.btn-outline-primary {
+        width: 100%;
+    }
+    .col.text-center .btn.btn-outline-danger {
+        width: 100%;
+    }
+    .col.text-center .btn.btn-outline-info {
+        width: 100%;
+    }
+    #new-hw {
+        width: 100%;
+    }
+    .hw-form {
+        width: 100%;
+    }
+    .calendar {
+        width: 100%;
+    }
+
+}
+
+h2 {
+    text-align: center;
+}

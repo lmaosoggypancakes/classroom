@@ -1,0 +1,69 @@
+{% extends 'classroom/layout.html' %}
+
+{% block body %}
+<div class="container">
+<div class="jumbotron">
+    <div class="container">
+        <div class="row"></div>
+        <div class="row">
+            <div class="container">
+                <h1>Want to create a classroom? It's easy.</h1>
+                <p class="lead">With just a few simple steps, you'll be on your way to having a dynamic classroom that students can join.</p>
+                <hr>
+                <p>Students will be able to join through an access code shortly after you create your class.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div id="create-1">
+            <h2>First, choose a name for your classroom</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div id="create-2">
+            <input type="text" name="name" placeholder="Mrs. Puff's Boating School" id="name">
+        </div>
+    </div>
+    <div class="row">
+        <div id="create-3">
+            <h4>Next, choose an icon for your class</h4>
+            <h6>You can use one of our preset icons, or choose your own!</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div id="create-4">
+            <form id="icons">
+                <input class="name" type="radio" id="social" name="icon" value="https://img2.pngio.com/download-free-png-social-studies-standards-ogden-city-school-school-social-studies-png-512_512.png">
+                <label for="social"><img src="https://img2.pngio.com/download-free-png-social-studies-standards-ogden-city-school-school-social-studies-png-512_512.png" width="50" height="50"></label>
+
+                <input class="name" type="radio" id="science" name="icon" value="https://img.favpng.com/22/21/16/science-icon-png-favpng-ScW1Ma2iTE8npYLYPrRYyagkQ.jpg">
+                <label for="science"><img src="https://img.favpng.com/22/21/16/science-icon-png-favpng-ScW1Ma2iTE8npYLYPrRYyagkQ.jpg" width="50" height="50"></label>
+
+                <input class="name" type="radio" id="math" name="icon" value="https://www.pngkit.com/png/detail/449-4495513_download-math-icon-png-clipart-mathematics-computer-clipart.png">
+                <label for="math"><img src="https://www.pngkit.com/png/detail/449-4495513_download-math-icon-png-clipart-mathematics-computer-clipart.png" width="50" height="50"></label>
+
+                <input class="name" type="radio" id="english" name="icon" value="https://cpng.pikpng.com/pngl/s/89-893168_subject-icon-png-english-icon-transparent-background-clipart.png">
+                <label for="english"><img src="https://cpng.pikpng.com/pngl/s/89-893168_subject-icon-png-english-icon-transparent-background-clipart.png" width="50" height="50"></label>
+                <br>
+                <input type="text" id="custom_icon">
+                <br>
+                <br>
+                <button type="button" class="btn btn-primary" id="final_create">Create Classroom</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="hidden-form" style="display: none;" id="create_form">
+    <form method="POST" id="final_create_form">
+        {% csrf_token %}
+        <input type="text" name="name" id="final_name">
+        <input type="text" name="icon" id="final_icon">
+    </form>
+</div>
+
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

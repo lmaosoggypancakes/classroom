@@ -1,0 +1,17 @@
+{% extends 'classroom/layout.html' %}
+{% block title %}
+Assignment
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h4 id="question-header">{{hw.question}}</h4>
+    <p class="due-date"><i>due {{hw.due_date}}</i></p>
+    <form method="post">
+        {% csrf_token %}
+        <textarea class="form-control" rows="10" name="body">{{hw.body}}</textarea>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+</div>
+{% endblock %}

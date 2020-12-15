@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script>
+    </script>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-image: linear-gradient(to right, purple, orange);
+            position: relative;
+            width: auto;
+            height: 100vh;
+            font-family: 'Roboto', serif;
+        }
+        .username {
+            border: none;
+            border-bottom: 5px solid black;
+            background: transparent;
+            outline: none;
+            align-self: center;
+            width: 100%;
+            padding-bottom: 5px;
+            font-size:24px;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+        .input-holder {
+            width: 50%;
+            margin: auto;
+            position: relative;;
+            top: 30%;
+        }
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: white;
+            font-size: 16px;
+            opacity: 1; /* Firefox */
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: white;
+            font-size: 16px;
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            color: white;
+            font-size: 16px;
+        }
+        footer button {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-holder">
+        <h1>Log in</h1>
+        <form method="post">
+        {% csrf_token %}
+        <input type="text" class="username" placeholder="Username" autocomplete="off" name="username"> 
+        <br>
+        <input type="password" class="username" placeholder="Password" id="password" name="password"> 
+        <input type="submit" style="display: none;" id="submit">
+    </form>
+    <script>
+                document.querySelector('#password').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('form').submit();
+            }
+            document.getElementById('reset').addEventListener('click', (e) => {
+                var email = prompt("Forgot your password? Enter your email here: ")
+                fetch(`/reset/${email}`).then(Response => Response.json()).then(data => {
+                    alert(data.message);
+                })
+            })
+        };
+
+    </script>
+    </div>
+    <footer>
+    <button class="btn btn-primary" id="reset">Forgot your password?</button>
+</footer>
+</body>
+
+</html>

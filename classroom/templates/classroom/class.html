@@ -1,0 +1,99 @@
+{% extends 'classroom/layout.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'classroom/class.js' %}"></script>
+<script src="{% static 'classroom/jquery/jquery.calendar.js' %}"></script>
+<link rel="stylesheet" href="{% static 'classroom/jquery/jquery.calendar.css'%}">
+{% endblock %}
+{% block body %}
+<nav class="class-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-outline-primary" id="assignments">My Assignments</button>
+                <button class="btn btn-outline-primary" id="students">Students</button>
+                <button class="btn btn-outline-primary" id="chat">Chat</button>
+                <button class="btn btn-outline-danger" id="leave">Leave</button>
+                <button class="btn btn-outline-info" id="announce">Announcement</button>
+        </div>
+        </div>
+    </div>
+</nav>
+<div id="main">
+
+
+    <div id="chat-div">
+        <div class="row" id="messages">
+            <ul id="messageslist">
+            </ul>
+        </div>
+        <div id="msg-container">
+            <input type="text" name="message" id="msg">
+        </div>
+    </div>
+
+    <div id="student-div">
+        <ul class="students">
+            {% for student in classmates %}
+            <li><a href="">{{student.username}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="assignments-div">
+    {% if not request.user.is_teacher %}
+        {% if assignments == "Congrats! You have no assignments for this class! ;)"%}
+            <div class="alert alert-warning" role="alert">
+                {{assignments}}
+            </div>
+        {% else %}
+            {% for hw in assignments %}
+                <div class="assignment">
+                    <input type="hidden" id="hw_id" value="{{hw.id}}">
+                    <h3>{{hw.question}}</h3>
+                        {% if hw.body == "" %}
+                        <p><i>not started yet</i></p>
+                        {% else %}
+                        <p><i>Work in progress</i></p>
+                        {% endif %}
+                        
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+    <!--        TEACHER VIEW        -->
+        <div class="current-assignments">
+            <button class="btn btn-primary" id="new-hw">New Assignment</button>
+            <div class="hw-form">
+                <h1 class="output"></h1>
+                <div class="calendar">
+                    <script>
+                        $(function () {
+                            $('.calendar').calendar({
+                                onSelect:function (event) {
+                                $('.output').text(event.label);
+                                },
+                                color: 'blue'
+
+                                });
+                            });
+                    </script>
+                </div>
+                <div class="question-form-holder">
+                    <input type="text" id="question" placeholder="What is 2 to the power of 9?">
+                </div>
+            </div>
+            <div class="submitted-work">
+                {% for a in submissions %}
+                    <div class="work">
+                        <h4>{{a.assigned_to.last_name}}, {{a.assigned_to.first_name}}</h4>
+                        <h5>Question: {{a.question}}</h5>
+                        <p><i>{{a.body}}</i></p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

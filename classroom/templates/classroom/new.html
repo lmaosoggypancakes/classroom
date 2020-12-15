@@ -1,0 +1,107 @@
+{% extends "classroom/layout.html" %}
+{% load static %}
+{% block body %}
+<div class="container">
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                        <img src="{% static 'classroom/students.jpg' %}" alt="" class="img-thumbnail" width="100%">
+                        <h1 class="display-4">Class management made easy.</h1>
+                        <p class="lead">With classroom50, teachers can keep track of students, create assignments, and promote a safe, focused, enjoyable learnign environment. Students can join classes, view and complete assignments, and chat real-time with fellow students.</p>
+                        <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-2 col-sm-0 col-0"></div>
+                                <div class="col-col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12" id="newteacher">
+                                        <a class="btn btn-primary" href="#teacherContent" data-toggle="collapse">I am a teacher</a>
+                                </div>
+                                <div class="col-col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12" id="newstudent">
+                                        <a class="btn btn-primary" href="#studentContent" data-toggle="collapse" id="student_new">I am a student</a>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-2 col-sm-0 col-0"></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col-3"></div>
+                                <div class="col-6" style="margin-left: auto; margin-right: auto;">
+                                        <p id="already">Already a user? <a href="../login" style="text-decoration: solid; color: blue; font-weight: bolder;">Sign in</a></p>
+                                </div>
+                                <div class="col-3"></div>
+                        </div>
+                        <div class="row">
+                                <div id="teacherContent" class="collapse">
+                                        <div class="container">
+                                                <div class="row">
+                                                        <div class="col">
+                                                                <form style="margin-top: 10%;" method="POST">
+                                                                        {% csrf_token %}
+                                                                        <div class="form-row">
+                                                                                <div class="form-group col-12">
+                                                                                        <label for="inputAddress">Username</label>
+                                                                                        <input type="text" class="form-control" id="inputAddress" placeholder="Username" name="username">
+                                                                                </div>
+                                                                          <div class="form-group col-12">
+                                                                            <label for="inputEmail4">Email</label>
+                                                                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+                                                                          </div>
+                                                                          <div class="form-group col-12">
+                                                                            <label for="inputPassword4">Password</label>
+                                                                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password">
+                                                                          </div>
+                                                                        </div>
+                                                                        <div class="form-row">
+                                                                          <div class="form-group col-6">
+                                                                            <label for="first">First Name</label>
+                                                                            <input type="text" class="form-control" id="first" name="first">
+                                                                          </div>
+                                                                          <div class="form-group col-6">
+                                                                                <label for="last">Last Name</label>
+                                                                                <input type="text" class="form-control" id="last" name="last">
+                                                                          </div>
+                                                                          <input type="hidden" name="user" value="teacher">
+                                                                        <button type="submit" class="btn btn-primary">Register</button>
+                                                                        </div>
+                                                                </form>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div id="studentContent" class="collapse">
+                                        <div class="container">
+                                                <div class="row">
+                                                        <div class="col">
+                                                                <form style="margin-top: 10%;" method="POST" action="{% url 'new' %}">
+                                                                        {% csrf_token %}
+                                                                        <div class="form-row">
+                                                                                <div class="form-group col-12">
+                                                                                        <label for="inputUsername">Username</label>
+                                                                                        <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="username">
+                                                                                      </div>
+                                                                          <div class="form-group col-12">
+                                                                            <label for="inputEmail">Email</label>
+                                                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
+                                                                          </div>
+                                                                          <div class="form-group col-12">
+                                                                            <label for="inputPassword">Password</label>
+                                                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                                                                          </div>
+                                                                        </div>
+                                                                        <div class="form-row">
+                                                                          <div class="form-group col-6">
+                                                                            <label for="first1">First Name</label>
+                                                                            <input type="text" class="form-control" id="first1" name="first">
+                                                                          </div>
+                                                                          <div class="form-group col-6">
+                                                                                <label for="last1">Last Name</label>
+                                                                                <input type="text" class="form-control" id="last1" name="last">
+                                                                          </div>
+                                                                          <input type="hidden" name="user" value="Student">
+                                                                        <button type="submit" class="btn btn-primary">Register</button>
+                                                                </form>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        </div>
+                </div>
+        </div>
+</div>
+{% endblock %}
