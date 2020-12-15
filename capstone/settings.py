@@ -34,7 +34,7 @@ SECRET_KEY = "^gt+4&n!2fmtm0q=vm6sq1ulo0vu=k4+=595au*hpurz(d5*!a"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CSRF_COOKIE_SECURE = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['classroom50.herokuapp.com']
 AUTH_USER_MODEL = 'classroom.user'
 # Application definition
 
