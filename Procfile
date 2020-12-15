@@ -1,2 +1,3 @@
 release: python3 manage.py migrate
-web: uvicorn --uds https://classroom50.herokuapp.com/ capstone.asgi:application
+web: daphne chat.asgi:application --port $PORT --bind 0.0.0.0 -v2
+worker: python manage.py runworker -v2
