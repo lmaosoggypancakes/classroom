@@ -1,1 +1,1 @@
-web: daphne -p 8001 capstone.asgi:application
+web: uvicorn capstone.asgi:application
