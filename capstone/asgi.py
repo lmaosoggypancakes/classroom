@@ -17,6 +17,6 @@ from . import consumers
 application = ProtocolTypeRouter({
   "http": get_asgi_application(),
   "websocket": (URLRouter([
-    re_path(r'ws/chat/(?P<room_name>\w+)/$', consumers.ChatConsumer.as_asgi()), 
+    re_path(r'wss/chat/(?P<room_name>\w+)/$', consumers.ChatConsumer.as_asgi()), 
   ]))
 })
