@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         var announcement = prompt("Message: ")
         if(announcement !== "") {
             socket.send(JSON.stringify({
-                'annoucement': announcement
+                'type': 'announcement',
+                'body': announcement
             }));
         }
     });
@@ -74,16 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     socket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');
-        socket
     };
 
     document.querySelector('#msg').focus();
     document.querySelector('#msg').onkeyup = function(e) {
         if (e.keyCode === 13) {  // enter, return
             msgDom = document.querySelector('#msg').value;
-            msgDom = `<strong>${msgDom}</strong> from <strong>${username}</strong>`
+            msgDom = `<strng>${msgDom}</strong> from <strong>${username}</strong>`
             socket.send(JSON.stringify({
-                'message': msgDom
+                'type': 'message',
+                'body': msgDom
             }));
             document.querySelector('#msg').value = '';
             msg.focus()

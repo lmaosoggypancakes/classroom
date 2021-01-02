@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     show_view("chat-div")
     const msg = document.querySelector('#msg');
     const socket = new WebSocket(
-        'wss://'
+        'ws://'
         + window.location.host
-        + '/wss/chat/'
+        + '/ws/chat/'
         + window.location.pathname[7]
         + '/'
     );
@@ -57,24 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
         var announcement = prompt("Message: ")
         if(announcement !== "") {
             socket.send(JSON.stringify({
-                'annoucement': announcement
+                'body_type': 'announcement',
+                'body': announcement
             }));
         }
     });
     socket.onmessage = function(e) {
         const data = JSON.parse(e.data);
+        console.log(data);
         const msg = document.createElement('li')
-        if(data.message) {
-        msg.innerHTML = data.message;
-        document.querySelector('#messageslist').appendChild(msg)
+        if(data.type === 'message'){
+            msg.innerHTML = data.body;
+            document.querySelector('#messageslist').appendChild(msg)
         }
         else {
-            alert(`Message from ${username}: ${data.annoucement}`)
+            alert(`Message from ${username}: ${data.body}`)
         }
     };
     socket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');
-        socket
     };
 
     document.querySelector('#msg').focus();
@@ -83,7 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             msgDom = document.querySelector('#msg').value;
             msgDom = `<strong>${msgDom}</strong> from <strong>${username}</strong>`
             socket.send(JSON.stringify({
-                'message': msgDom
+                'body_type': 'message',
+                'body': msgDom
             }));
             document.querySelector('#msg').value = '';
             msg.focus()

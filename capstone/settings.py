@@ -34,7 +34,7 @@ SECRET_KEY = "^gt+4&n!2fmtm0q=vm6sq1ulo0vu=k4+=595au*hpurz(d5*!a"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CSRF_COOKIE_SECURE = True
-ALLOWED_HOSTS = ['classroom50.herokuapp.com']
+ALLOWED_HOSTS = ['classroom50.herokuapp.com', '127.0.0.1']
 AUTH_USER_MODEL = 'classroom.user'
 # Application definition
 
@@ -84,10 +84,11 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('10.148.121.8', 6389)],
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
+# ('10.148.121.8', 6389), 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
