@@ -84,7 +84,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379),('10.148.121.8', 6389)],
+            "hosts": [('10.148.121.8', 6389)],
         },
     },
 }
@@ -147,4 +147,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = email
 EMAIL_HOST_PASSWORD = password
 
-LOGIN_URL = '/login'
+LOGIN_URL = '/new'
