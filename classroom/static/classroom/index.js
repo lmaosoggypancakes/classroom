@@ -1,3 +1,29 @@
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if(window.location.pathname === "/") {
+        const m = window.createNotification({});
+        const ws = new WebSocket(
+            'ws://' + window.location.host + '/'
+        )
+        ws.onopen = (e) => {
+            console.log("Connected!");
+        }
+        ws.onmessage = (e) => {
+            console.log(e.data)
+            m({
+                title: 'New User',
+                message: e.data,
+                positionClass: 'nfc-bottom-right',
+                displayCloseButton: true,
+                theme: 'info',
+                showDuration: 5000
+            })
+        }
+    }
+    
+})
+
 function stop_anim() {
     document.querySelector('.form').style.AnimtionPlayState = 'paused';
 }
@@ -36,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#custom_icon').val('')
         })
     })
-
+    try {
     document.querySelector('#custom_icon').addEventListener('keypress', () => {      
         if($('#custom_icon').val() === '') {
             document.getElementById("english").checked = false;
@@ -45,4 +71,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("math").checked = false;
         }
     });
+    } catch (err)  {console.error(err)}
 });

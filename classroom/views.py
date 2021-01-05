@@ -144,7 +144,7 @@ def class_view(request, id):
                 
             })
         else:
-            return HttpResponseForbidden
+            return HttpResponseForbidden("Not allowed!")
 def get_user(request): 
     return JsonResponse(request.user.serialize(), safe=False)
 @login_required

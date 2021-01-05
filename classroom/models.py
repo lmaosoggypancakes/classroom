@@ -1,11 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import time, django.utils.timezone as timezone
+from django.db.models.signals import post_save
+from .consumers import UserConsumer
+
 # Create your models here.
 
 class User(AbstractUser):
     pass
-    is_teacher = models.BooleanField()
+    is_teacher = models.BooleanField(default=True)
     homework = models.ManyToManyField("Assignment", related_name="assignments", symmetrical=False)
     def serialize(self):
         return {
@@ -43,4 +46,5 @@ class PasswordReset(models.Model):
     for_user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="user")
     time = models.DateTimeField(auto_now_add=True)
 
-    
+
+post_save.connect(UserConsumer.get_user_updates, sender=User)

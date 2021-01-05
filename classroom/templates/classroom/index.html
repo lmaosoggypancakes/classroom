@@ -1,4 +1,10 @@
 {% extends "classroom/layout.html" %}
+{% load static %}
+{% block head %}
+<script src="{% static 'classroom/styled-notifications-master/dist/notifications.js' %}"></script>
+<link rel="stylesheet" href="{% static 'classroom/styled-notifications-master/dist/notifications.css' %}"></script>
+<script src="{% static 'classroom/class.js' %}"></script>
+{% endblock %}
 {% block body %}
 <div class="container">
         {% for classroom in classrooms %}

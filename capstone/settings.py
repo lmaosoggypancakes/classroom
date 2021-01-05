@@ -33,7 +33,6 @@ SECRET_KEY = "^gt+4&n!2fmtm0q=vm6sq1ulo0vu=k4+=595au*hpurz(d5*!a"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CSRF_COOKIE_SECURE = True
 ALLOWED_HOSTS = ['classroom50.herokuapp.com', '127.0.0.1']
 AUTH_USER_MODEL = 'classroom.user'
 # Application definition
@@ -82,10 +81,11 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 ASGI_APPLICATION = 'capstone.asgi.application'
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('10.148.121.8', 6379)],
-        },
+    "BACKEND": "channels.layers.InMemoryChannelLayer",
+
+    #    'CONFIG': {
+     #       "hosts": [('10.148.121.8', 6379)],
+      #  },
     },
 }
 # , 

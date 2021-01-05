@@ -1,6 +1,8 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import AsyncWebsocketConsumer, WebsocketConsumer
+from channels.layers import get_channel_layer
+
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         print("connecting...")
@@ -26,6 +28,7 @@ class ChatConsumer(WebsocketConsumer):
         data = json.loads(text_data)
         message_type = data['body_type']
         body = data['body']
+        print(body)
         send_data = {
                 'type': message_type,
                 "body": body
@@ -41,3 +44,37 @@ class ChatConsumer(WebsocketConsumer):
         async_to_sync(self.send(text_data=json.dumps(event)))
     def announcement(self, event):
         async_to_sync(self.send(text_data=json.dumps(event)))
+
+
+
+class UserConsumer(WebsocketConsumer):
+    connected_users = []
+    def connect(self):
+        self.name = "foo"
+        async_to_sync(self.channel_layer.group_add)(
+            self.name,
+            self.channel_name
+        )
+        UserConsumer.connected_users.append(self)
+        self.accept()
+    def disconnect(self, close_code):
+        UserConsumer.connected_users.remove(self)
+        # Leave room group
+        async_to_sync(self.channel_layer.group_discard(
+            self.name,
+            self.channel_name
+        ))
+    @staticmethod
+    def get_user_updates(sender, instance, **kwargs):
+        try:
+            name = instance.first_name + " " + instance.last_name
+            i = UserConsumer.connected_users[0]
+            async_to_sync(i.channel_layer.group_send)(
+                i.name, 
+                {
+                    "type": "message",
+                    "message": name + " has registered for an account!"
+                }
+            )
+        except: pass
+    def message(self, event): async_to_sync(self.send(text_data=json.dumps(event["message"])))
