@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(window.location.pathname === "/") {
         const m = window.createNotification({});
         const ws = new WebSocket(
-            'ws://' + window.location.host + '/'
+            'wss://' + window.location.host + '/'
         )
         ws.onopen = (e) => {
             console.log("Connected!");
